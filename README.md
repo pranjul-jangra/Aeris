@@ -16,7 +16,7 @@ Displays the Air Quality Index (AQI) with PM2.5, PM10, O₃, SO₃ metrics.
 
 Includes tailored recommendations on what to wear and precautions.
 
-<img src="./public/alerts.png" alt="Alerts & AQI" width="400" height="300" />
+<img src="./public/alerts.png" alt="Alerts & AQI" width="400" height="200" />
 
 ---
 
@@ -26,7 +26,7 @@ Toggle between Temperature, Pressure, and Humidity trends.
 
 Interactive chart showing hourly data (e.g. reaching 43.2 °C at 10 AM).
 
-<img src="./public/Graph.png" alt="Chart" width="400" height="300" />
+<img src="./public/Graph.png" alt="Chart" width="400" height="200" />
 
 ---
 
@@ -36,7 +36,7 @@ Cards for temperature, pressure, rain, humidity, visibility, feels-like temperat
 
 Real-time clock displaying current time and date.
 
-<img src="./public//todays-stats.png" alt="Quick Stats" width="400" height="300" />
+<img src="./public//todays-stats.png" alt="Quick Stats" width="400" height="200" />
 
 ---
 
@@ -44,7 +44,7 @@ Real-time clock displaying current time and date.
 
 Summarized daily values: max wind speed, precipitation, visibility, humidity, temperature stats, sunrise/sunset/moon phases.
 
-<img src="./public/detailed-metrics.png" alt="Detailed Metrics" width="400" height="300" />
+<img src="./public/detailed-metrics.png" alt="Detailed Metrics" width="400" height="200" />
 
 ---
 
@@ -56,7 +56,7 @@ Shows selected coordinates and city.
 
 “Get weather” button fetches data for chosen location.
 
-<img src="./public/map.png" alt="Map" width="400" height="300" />
+<img src="./public/map.png" alt="Map" width="400" height="200" />
 
 ---
  
@@ -68,8 +68,8 @@ Highlights current hour.
 
 Detailed card view for selected hour—weather conditions, temperature, wind speed, UV index.
 
-<img src="./public/hour-forecast.png" alt="Hours Metrics" width="400" height="300" />
-<img src="./public/hours-detail.png" alt="Hours metrics" width="400" height="300" />
+<img src="./public/hour-forecast.png" alt="Hours Metrics" width="400" height="200" />
+<img src="./public/hours-detail.png" alt="Hours metrics" width="400" height="200" />
 
 ---
 
