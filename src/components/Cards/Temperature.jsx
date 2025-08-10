@@ -1,12 +1,13 @@
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
+import useThemeStyle from "../../hooks/useThemeStyle";
 
 
-export default function Temperature({ obj, theme }) {
-    const themeShadow = theme === 'light' ? 'shadow-gray-300' : 'shadow-black/70';
+export default function Temperature({ obj }) {
+    const { shadow } = useThemeStyle();
 
     return (
-        <div className={`w-full max-w-[400px] h-fit rounded-md *:flex *:gap-1 pb-3 relative shrink-0 grow-0 shadow-md ${themeShadow}`} yy>
+        <div className={`w-full max-w-[400px] h-fit rounded-md *:flex *:gap-1 pb-3 relative shrink-0 grow-0 shadow-md ${shadow}`}>
             <img src="/temp.png" className="w-14 aspect-square absolute -top-3 -right-5 pointer-events-none" alt="" />
 
             <div className='*:bg-cyan-800/90 *:w-full *:py-1 text-white'>

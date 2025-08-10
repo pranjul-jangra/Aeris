@@ -107,7 +107,7 @@ body {
 .location-header {
   background: linear-gradient(to top right, #00c8ffee, transparent, transparent, transparent, transparent),
     linear-gradient(to top left, #ff000014, transparent, transparent),
-    linear-gradient(to bottom left, #ff00000a, transparent, transparent), url("/rain.png"), rgb(230, 230, 230);
+    linear-gradient(to bottom left, #ff00000a, transparent, transparent), url("/rain.png"), rgba(230, 230, 230, 0);
 }
 
 .weather-heading {

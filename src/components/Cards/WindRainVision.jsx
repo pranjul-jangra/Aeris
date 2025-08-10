@@ -1,7 +1,10 @@
+import useThemeStyle from "../../hooks/useThemeStyle";
+
 function Cards({ obj, imgsrc, text, firstField, firstFieldUnit, secondField, secondFieldUnit }) {
+    const { shadow } = useThemeStyle();
 
     return (
-        <article className='relative'>
+        <article className={`relative shadow-md ${shadow} transition-shadow duration-300`}>
             <img src={imgsrc} className='absolute w-14 aspect-square -top-3 -right-5 pointer-events-none' alt="" />
             <p className='bg-cyan-800/90 py-2 text-white px-10 rounded-t-md'>{text}</p>
             <div className='p-3 *:whitespace-pre-wrap'>
@@ -12,13 +15,9 @@ function Cards({ obj, imgsrc, text, firstField, firstFieldUnit, secondField, sec
     )
 }
 
-export default function WindRainVision({ obj, theme }) {
-
-    const themeShadow = theme === 'light' ? '*:shadow-gray-300' : '*:shadow-black/70';
-
-
+export default function WindRainVision({ obj }) {
     return (
-        <section className={`*:rounded-md grid gap-8 grid-cols-[repeat(auto-fill,minmax(250px,1fr))] *:shadow-md ${themeShadow}`}>
+        <section className={`*:rounded-md grid gap-8 grid-cols-[repeat(auto-fill,minmax(250px,1fr))]`}>
 
             {/* Wind speed */}
             <Cards obj={obj} imgsrc='/wind.png' text='Max Wind speed' firstField='maxwind_mph' firstFieldUnit='miles/h' secondField='maxwind_kph' secondFieldUnit='km/h' />

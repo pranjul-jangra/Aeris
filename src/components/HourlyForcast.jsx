@@ -4,9 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { TbArrowBack, TbTemperatureCelsius, TbWind, TbDroplet, TbSun, TbGauge, TbMoon, } from "react-icons/tb";
 import ToggleSwitch from './ToggleSwitch';
 import Footer from './Footer';
+import useThemeStyle from '../hooks/useThemeStyle';
 
 
 export default function HourlyForecast({ theme, toggleTheme }) {
+  const { bgColor, darkCardBg, border } = useThemeStyle();
+
   const navigate = useNavigate();
   const [selectedHour, setSelectedHour] = useState(null);
   const hourlyData = useSelector((state) => state.weather.hourlyData);
@@ -29,12 +32,9 @@ export default function HourlyForecast({ theme, toggleTheme }) {
     return `${displayHour} ${ampm}`;
   };
 
-  const bg = theme === 'light' ? 'bg-white' : 'bg-black/80 text-white';
-  const cardBg = theme === 'light' ? 'bg-gray-100' : 'bg-black/30';
-
 
   return (
-    <main className={`${bg} min-h-screen transition-all duration-150`}>
+    <main className={`${bgColor} min-h-dvh transition-all duration-150`}>
       {/* Header */}
       <div className="sticky top-0 z-10 backdrop-blur-md bg-white/10 border-b border-white/20">
         <div className="flex items-center justify-between py-4 px-2">
@@ -56,7 +56,7 @@ export default function HourlyForecast({ theme, toggleTheme }) {
           {hourlyData.map((hour, i) => (
             <div
               key={i}
-              className={`${cardBg} rounded-xl p-4 shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300`}
+              className={`${darkCardBg} rounded-xl p-4 shadow-lg border ${border} hover:shadow-xl transition-all duration-300`}
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
@@ -94,7 +94,7 @@ export default function HourlyForecast({ theme, toggleTheme }) {
 
         {/* Desktop Table View */}
         <div className="hidden lg:block">
-          <div className={`${cardBg} rounded-xl shadow-xl border border-white/20 overflow-hidden transition-colors duration-150`}>
+          <div className={`${darkCardBg} rounded-xl shadow-xl border ${border} overflow-hidden transition-colors duration-150`}>
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
@@ -148,7 +148,7 @@ export default function HourlyForecast({ theme, toggleTheme }) {
 
         {/* Selected Hour Details (Desktop) */}
         {selectedHour !== null && (
-          <div className={`${cardBg} rounded-xl p-6 mt-6 shadow-xl border border-white/20 hidden lg:block transition-colors duration-150`}>
+          <div className={`${darkCardBg} rounded-xl p-6 mt-6 shadow-xl border ${border} hidden lg:block transition-colors duration-150`}>
             <h3 className="text-xl font-bold mb-4">
               Detailed forecast for {getTimeDisplay(hourlyData[selectedHour].time)}
             </h3>

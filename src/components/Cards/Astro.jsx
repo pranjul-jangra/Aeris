@@ -1,34 +1,36 @@
-export default function Astro({ obj, theme }) {
-  const themeShadow = theme === 'light' ? '*:shadow-gray-300' : '*:shadow-black/70';
+import useThemeStyle from "../../hooks/useThemeStyle";
+
+export default function Astro({ obj }) {
+  const { shadow } = useThemeStyle();
 
 
   return (
-    <section className={`w-full max-w-[550px] *:bg-cyan-800/90 *:text-white *:py-5 *:hover:scale-105 *:transition-transform *:duration-150 *:rounded-lg *:shadow-md ${themeShadow} grid-container *:w-full *:h-full *:flex *:flex-col *:justify-center *:items-center`}>
-      <div className="relative">
+    <section className={`w-full max-w-[550px] *:bg-cyan-800/90 *:text-white *:py-5 *:rounded-lg *:shadow-md grid-container *:w-full *:h-full *:flex *:flex-col *:justify-center *:items-center`}>
+      <div className={`relative ${shadow}`}>
         <img src="/sun-rise.png" className="absolute top-0 right-0 w-12 aspect-square" alt="" />
         <p>{obj.astro.sunrise}</p>
         <p>Sunrise</p>
       </div>
 
-      <div className="relative">
+      <div className={`relative ${shadow}`}>
         <img src="/sunset.png" className="absolute top-0 right-0 w-12 aspect-square" alt="" />
         <p>{obj.astro.sunset}</p>
         <p>Sunset</p>
       </div>
 
-      <div className="relative">
+      <div className={`relative ${shadow}`}>
         <img src="/moon-rise.png" className="absolute top-0 right-0 w-12 aspect-square" alt="" />
         <p>{obj.astro.moonrise}</p>
         <p>Moonrise</p>
       </div>
 
-      <div className="relative">
+      <div className={`relative ${shadow}`}>
         <img src="/moon-set.png" className="absolute top-0 right-0 w-12 aspect-square" alt="" />
         <p>{obj.astro.moonset}</p>
         <p>Moonset</p>
       </div>
 
-      <div className="relative">
+      <div className={`relative ${shadow}`}>
         {
           (() => {
             switch (obj.astro.moon_phase) {
@@ -57,19 +59,19 @@ export default function Astro({ obj, theme }) {
         <p>{obj.astro.moon_phase}</p>
       </div>
 
-      <div className="relative">
+      <div className={`relative ${shadow}`}>
         <img src="/moon-illum.png" className="absolute top-0 right-0 w-12 aspect-square" alt="" />
         <p>{obj.astro.moon_illumination}</p>
         <p>Moon illumination</p>
       </div>
 
-      <div className="relative">
+      <div className={`relative ${shadow}`}>
         <img src="/sun.png" className="absolute top-0 right-0 w-12 aspect-square" alt="" />
         <p className="font-bold">Sun</p>
         <p className="pt-1">{obj.astro.is_sun_up === 0 ? 'Hidden' : 'Visible in the sky'}</p>
       </div>
 
-      <div className="relative">
+      <div className={`relative ${shadow}`}>
         <img src="/moon.png" className="absolute top-0 right-0 w-12 aspect-square" alt="" />
         <p className="font-bold">Moon</p>
         <p className="pt-1">{obj.astro.is_moon_up === 0 ? 'Hidden' : 'Visible in the sky'}</p>

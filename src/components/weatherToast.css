@@ -4,8 +4,8 @@
     border-radius: 12px;
     box-shadow: 0 0 12px rgba(0, 102, 204, 0.2);
     font-family: "Segoe UI", sans-serif;
-    font-size: 16px;
-    padding: 10px;
+    font-size: 0.85rem;
+    padding: 6px;
     padding-left: 20px;
 }
 .weather-toast-body {
@@ -19,13 +19,12 @@
 
 .toast-cloud-icon {
     flex: 0 0 auto;
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
+    width: 65px;
+    height: 65px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateX(-67%) translateY(-55%);
+    transform: translateX(-43%) translateY(-55%);
     position: absolute;
 }
 

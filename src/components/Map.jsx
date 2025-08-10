@@ -7,6 +7,7 @@ import axios from 'axios';
 import { showWeatherToast } from './WeatherToast';
 import { Search } from 'lucide-react';
 import { fetchWeatherData } from './globalVariables/WeatherSlice';
+import useThemeStyle from '../hooks/useThemeStyle';
 
 
 // Ensure icons runs only once
@@ -106,16 +107,15 @@ function LocationMarker({ onLocationFound }) {
 
 
 // Component
-const Map = memo(({ theme, ref }) => {
+const Map = memo(({ ref }) => {
+    const { textColor } = useThemeStyle();
+
     const dispatch = useDispatch();
     const [locationInfo, setLocationInfo] = useState(null);
 
     const handleSearch = (city) => {
         if (city.trim()) dispatch(fetchWeatherData({ city }));
     };
-
-    // Theme styling
-    const textColor = theme === 'light' ? 'text-gray-900' : 'text-gray-300'
 
     return (
         <div ref={ref}>
@@ -126,7 +126,7 @@ const Map = memo(({ theme, ref }) => {
                 zoomSnap={0.5}
                 zoomDelta={0.5}
                 wheelPxPerZoomLevel={120}
-                className='h-[400px] w-full brightness-95 contrast-125'
+                className={`h-[400px] w-full brightness-95 contrast-125`}
                 key="map-container"
             >
                 <TileLayer

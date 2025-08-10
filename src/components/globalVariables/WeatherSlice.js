@@ -9,13 +9,25 @@ export const fetchWeatherData = createAsyncThunk(
     'weather/fetchWeatherData',
     async ({ lat, lon, city = 'London' }) => {
         const location = lat && lon ? `${lat},${lon}` : city;
+
         try {
+            // Fetch weather
             const res = await axios.get(`${weatherApiUrl}&q=${location}&days=5&aqi=yes`);
-            showWeatherToast("Weather updated successfully.");
+
+            // Add history record to backend
+            try {
+                const serverURL = import.meta.env.VITE_SERVER_URL;
+                await axios.post(`${serverURL}/api/history/add`,{ location },{ withCredentials: true });
+            } catch (historyErr) {
+                console.error("Error adding to history:", historyErr);
+            }
+
             return res.data;
 
         } catch (error) {
             const message = error?.response?.data?.error?.message;
+
+            if (navigator && !navigator.onLine) return showWeatherToast("You are offline. Please connect to your internet.");
 
             if (message === 'No matching location found.') {
                 showWeatherToast("No matching location found.");

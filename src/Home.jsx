@@ -5,9 +5,12 @@ import FutureAssumption from './components/FutureAssumption';
 import TodaysForecast from './components/TodaysForecast';
 import Footer from './components/Footer';
 import Map from './components/Map';
+import useThemeStyle from './hooks/useThemeStyle';
 
 
 export default function Home({ theme, toggleTheme }) {
+    const { bgColor, metaInfoBg } = useThemeStyle();
+
     const weatherData = useSelector((state) => state.weather.weatherData);
     const mapRef = useRef();
 
@@ -17,17 +20,14 @@ export default function Home({ theme, toggleTheme }) {
         }
     };
 
-    // Theme styling
-    const bg = theme === 'light' ? 'bg-white' : 'bg-black/80 text-gray-300';
-
     return (
-        <main>
+        <main className={`${bgColor} transition-colors duration-300`}>
             <Navbar toggleTheme={toggleTheme} theme={theme} onMapScroll={scrollToMap} />
 
-            <section className={`${bg} w-full transition-colors duration-150`}>
+            <section className={`w-full transition-colors duration-150`}>
                 {/* Metadata - location */}
-                <div className="flex location-header justify-between items-center bg-white/70 backdrop-blur-md rounded-b-md shadow-md p-6 mb-6">
-                    <div className="text-gray-800 leading-relaxed space-y-2">
+                <div className={`flex location-header justify-between items-center ${metaInfoBg} backdrop-blur-md rounded-b-md shadow-md p-6 mb-6`}>
+                    <div className="leading-relaxed space-y-2">
                         <p>
                             <span className="font-semibold text-lg whitespace-nowrap">📍 Location:</span>
                             <span className="ml-2 tracking-wide">
@@ -61,20 +61,20 @@ export default function Home({ theme, toggleTheme }) {
                     {/* Todays forecast */}
                     <h1 className={`weather-heading ${theme === 'dark' && 'weather-heading-dark'}`}>Todays forecast</h1>
                     <div className='min-h-screen'>
-                        <TodaysForecast theme={theme} />
+                        <TodaysForecast />
                     </div>
 
                     {/* Future forecast */}
                     <h1 className={`weather-heading ${theme === 'dark' && 'weather-heading-dark'}`}>Detailed forecast</h1>
                     <div className='min-h-30 p-2 rounded-2xl mb-10'>
                         {
-                            Object.keys(weatherData || {})?.length > 0 ? <FutureAssumption theme={theme} /> : <div className='text-xl font-medium text-gray-500/90'>Please choose a location.</div>
+                            Object.keys(weatherData || {})?.length > 0 ? <FutureAssumption /> : <div className='text-xl font-medium text-gray-500/90'>Please choose a location.</div>
                         }
                     </div>
 
                     {/* Map */}
                     <div className='h-fit pb-3'>
-                        <Map theme={theme} ref={mapRef} />
+                        <Map ref={mapRef} />
                     </div>
                 </section>
             </section>

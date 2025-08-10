@@ -3,8 +3,11 @@ import { useSelector } from 'react-redux';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { AlertTriangle, Wind, Thermometer, Droplets, Sun, Snowflake, Eye, CloudRain, Shirt, Activity, Calendar, Haze, Cloud, LucideActivity } from 'lucide-react';
 import { generateActivitySuggestions, generateClothingRecommendations, generateWeatherAlerts, getAQIColor, getAQILevel, getAQITextColor } from '../utils/AlertLogics.js';
+import useThemeStyle from '../hooks/useThemeStyle.jsx';
 
-const WeatherDashboard = ({ theme }) => {
+const WeatherDashboard = () => {
+  const { darkCardBg, headerBg, shadow, border } = useThemeStyle();
+
   const [activeChart, setActiveChart] = useState('temperature');
   const weatherData = useSelector((state) => state.weather.weatherData);
 
@@ -12,10 +15,6 @@ const WeatherDashboard = ({ theme }) => {
   const alerts = generateWeatherAlerts({ current: weatherData?.current, forecast: weatherData?.forecast });
   const clothingRec = generateClothingRecommendations(weatherData?.current);
   const activityRecs = generateActivitySuggestions(weatherData?.current);
-
-  // Theme styling
-  const bgColor = theme === 'light' ? 'bg-white' : 'bg-black/30';
-  const headerBg = theme === 'light' ? 'bg-white' : 'bg-zinc-800';
 
   // Helping handlers
   const lucideIcons = (name) => {
@@ -45,7 +44,7 @@ const WeatherDashboard = ({ theme }) => {
       <div className="max-w-7xl mx-auto space-y-6">
 
         {/* Weather Alerts */}
-        <div className={`${bgColor} transition-colors duration-150 rounded-2xl shadow-lg p-6`}>
+        <div className={`${darkCardBg} transition-colors duration-150 rounded-2xl shadow-lg ${shadow} border ${border} p-6`}>
 
           <div className="flex items-center gap-2 mb-4">
             <AlertTriangle className="text-red-500" size={24} />
@@ -72,7 +71,7 @@ const WeatherDashboard = ({ theme }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Air Quality Index */}
-          <div className={`${bgColor} transition-colors duration-150 rounded-2xl shadow-lg p-6`}>
+          <div className={`${darkCardBg} transition-colors duration-150 rounded-2xl shadow-lg ${shadow} border ${border} p-6`}>
             <div className="flex items-center gap-2 mb-4">
               <Wind className="text-blue-500" size={24} />
               <h2 className="text-xl font-bold">Air Quality Index</h2>
@@ -114,7 +113,7 @@ const WeatherDashboard = ({ theme }) => {
           </div>
 
           {/* Recommendations */}
-          <div className={`${bgColor} transition-colors max-h-80 relative overflow-scroll duration-150 rounded-2xl shadow-lg pb-6`}>
+          <div className={`${darkCardBg} transition-colors max-h-80 relative overflow-scroll duration-150 rounded-2xl shadow-lg ${shadow} border ${border} pb-6`}>
             <div className={`${headerBg} flex items-center gap-2 mb-4 px-6 pt-6 sticky top-0 transition-colors duration-150`}>
               <Calendar className="text-green-500" size={24} />
               <h2 className="text-xl font-bold ">Recommendations</h2>
@@ -164,7 +163,7 @@ const WeatherDashboard = ({ theme }) => {
 
 
         {/* Interactive Charts */}
-        <div className={`${bgColor} transition-colors duration-150 rounded-2xl shadow-lg p-6`}>
+        <div className={`${darkCardBg} transition-colors duration-150 rounded-2xl shadow-lg ${shadow} border ${border} p-6`}>
           <div className="flex max-md:flex-col items-center max-md:items-start max-md:*:mb-3 justify-between mb-6">
             <div className="flex items-center gap-2">
               <Thermometer className="text-red-500" size={24} />
