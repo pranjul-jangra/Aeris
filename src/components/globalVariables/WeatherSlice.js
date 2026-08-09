@@ -13,15 +13,8 @@ export const fetchWeatherData = createAsyncThunk(
         try {
             // Fetch weather
             const res = await axios.get(`${weatherApiUrl}&q=${location}&days=5&aqi=yes`);
-
-            // Add history record to backend
-            try {
-                const serverURL = import.meta.env.VITE_SERVER_URL;
-                await axios.post(`${serverURL}/api/history/add`,{ location },{ withCredentials: true });
-            } catch (historyErr) {
-                console.error("Error adding to history:", historyErr);
-            }
-
+            console.log("Data from API:", res.data);
+            
             return res.data;
 
         } catch (error) {

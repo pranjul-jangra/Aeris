@@ -44,6 +44,13 @@ const Navbar = memo(({ toggleTheme, theme, onMapScroll }) => {
         }
     };
 
+    // Seach on pressing enter
+    const handleInputClick = (e) => {
+        if(e.key === "Enter"){
+            handleSearch();
+        }
+    }
+
     // Locate yourself
     const handleLocateYouself = () => {
         if (navigator.geolocation) {
@@ -97,7 +104,7 @@ const Navbar = memo(({ toggleTheme, theme, onMapScroll }) => {
             <img src="/logo.png" alt="" loading='eager' className='w-10 aspect-square object-contain pointer-events-none max-md:hidden' />
 
             <div className="flex relative">
-                <input type="search" name="Search location" value={city} onChange={(e) => setCity(e.target.value)} placeholder="Location?" className="w-68 max-md:max-w-56 max-sm:w-36 placeholder:text-sm rounded-l-md pl-2 py-1.5 bg-white/70 text-black border-[1px] border-gray-300 border-r-0 outline-0 focus-visible:outline-2 outline-cyan-700" aria-label="Seach location" />
+                <input type="search" name="Search location" value={city} onKeyDown={handleInputClick} onChange={(e) => setCity(e.target.value)} placeholder="Location?" className="w-68 max-md:max-w-56 max-sm:w-36 placeholder:text-sm rounded-l-md pl-2 py-1.5 bg-white/70 text-black border-[1px] border-gray-300 border-r-0 outline-0 focus-visible:outline-2 outline-cyan-700" aria-label="Seach location" />
                 <button type="button" onClick={handleSearch} className="px-2 rounded-r-md bg-cyan-800 text-white cursor-pointer border-0 outline-0 focus-visible:outline-2 outline-cyan-700" aria-label="Search">Search</button>
 
                 {/* Cities suggestion */}
@@ -124,7 +131,6 @@ const Navbar = memo(({ toggleTheme, theme, onMapScroll }) => {
             <div className="flex gap-6 max-md:gap-3">
                 <button type="button" onClick={onMapScroll} className="px-2 py-1.5 bg-cyan-800 rounded-md cursor-pointer max-md:hidden border-0 outline-0 focus-visible:outline-2 outline-cyan-700" title="Explore the world" aria-label="Explore the world">🗺️</button>
                 <button type="button" onClick={handleLocateYouself} title="Locate yourself" className="px-1.5 py-1.5 bg-cyan-800 rounded-md text-white cursor-pointer max-sm:hidden border-0 outline-0 focus-visible:outline-2 outline-cyan-700" aria-label="Locate yourself"><LocateFixed /></button>
-                <button type="button" onClick={() => navigate('/history')} className="px-2 py-1.5 bg-cyan-800 text-white rounded-md cursor-pointer border-0 outline-0 focus-visible:outline-2 outline-cyan-700" title="History" aria-label="History"><History /></button>
                 <ToggleSwitch toggleTheme={toggleTheme} theme={theme} />
             </div>
         </nav>

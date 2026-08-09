@@ -1,15 +1,21 @@
 import useThemeStyle from "../../hooks/useThemeStyle";
 
 function Cards({ obj, imgsrc, text, firstField, firstFieldUnit, secondField, secondFieldUnit }) {
-    const { shadow } = useThemeStyle();
+    const { shadow, secondaryText, mutedText } = useThemeStyle();
 
     return (
         <article className={`relative shadow-md ${shadow} transition-shadow duration-300`}>
             <img src={imgsrc} className='absolute w-14 aspect-square -top-3 -right-5 pointer-events-none' alt="" />
             <p className='bg-cyan-800/90 py-2 text-white px-10 rounded-t-md'>{text}</p>
             <div className='p-3 *:whitespace-pre-wrap'>
-                <p className='border-b-[1px] border-b-cyan-600/30 pb-2 mb-2'><span className='font-bold text-xl'>{obj.day[firstField]}</span>   {firstFieldUnit}</p>
-                <p><span className='font-bold text-xl'>{obj.day[secondField]}</span>   {secondFieldUnit}</p>
+                <p className={`border-b-[1px] border-b-cyan-600/30 pb-2 mb-2 flex gap-3 items-center`}>
+                    <span className={`font-bold text-xl`}>{obj.day[firstField]}</span>   
+                    <span className={`${mutedText}`}>{firstFieldUnit}</span>
+                </p>
+                <p className="flex gap-3 items-center">
+                    <span className={`font-bold text-xl`}>{obj.day[secondField]}</span>   
+                    <span className={`${mutedText}`}>{secondFieldUnit}</span>
+                </p>
             </div>
         </article>
     )

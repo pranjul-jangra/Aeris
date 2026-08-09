@@ -107,8 +107,8 @@ function LocationMarker({ onLocationFound }) {
 
 
 // Component
-const Map = memo(({ ref }) => {
-    const { textColor } = useThemeStyle();
+const Map = ({ ref }) => {
+    const { textColor, secondaryText, mutedText, border, buttonBg } = useThemeStyle();
 
     const dispatch = useDispatch();
     const [locationInfo, setLocationInfo] = useState(null);
@@ -137,14 +137,14 @@ const Map = memo(({ ref }) => {
             </MapContainer>
 
             {locationInfo && (
-                <div className={`pb-14 pt-5 ${textColor}`}>
+                <div className={`border ${border} py-5 px-5 my-4 rounded-2xl ${textColor}`}>
                     <strong className='text-xl'>Current Pick</strong>
-                    <p>City: {locationInfo?.city}</p>
-                    <p className='text-sm'>Latitude: {locationInfo?.lat}</p>
-                    <p className='text-sm'>Longitude: {locationInfo?.lng}</p>
+                    <p className={`${mutedText}`}>City: {locationInfo?.city}</p>
+                    <p className={`text-sm ${secondaryText}`}>Longitude: {locationInfo?.lng}</p>
+                    <p className={`text-sm ${secondaryText}`}>Latitude: {locationInfo?.lat}</p>
 
                     <button
-                        className='flex items-center gap-2 cursor-pointer focus-visible:outline-[1.4px] rounded-md px-2 mt-1.5 shadow-2xs shadow-gray-400 hover:shadow-transparent bg-cyan-900 text-white'
+                        className={`flex items-center gap-2 cursor-pointer focus-visible:outline-[1.4px] rounded-lg px-5 py-2 mt-3 ${buttonBg} transition-colors duration-200`}
                         onClick={() => {handleSearch(locationInfo?.city || '')}}
                         aria-label={`Get weather for ${locationInfo?.city}`}>
                         <span className='pb-0.5'>Get weather</span> <Search className='text-white text-sm w-4 h-4' />
@@ -153,6 +153,6 @@ const Map = memo(({ ref }) => {
             )}
         </div>
     );
-})
+}
 
 export default Map;

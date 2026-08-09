@@ -16,7 +16,7 @@ const Time = memo(() => {
     }, [time]);
 
     return (
-        <article className={`bg-cyan-700 min-w-56 flex-col justify-center h-36 max-w-72 rounded-xl text-white ${shadow}`}>
+        <article className={`w-full h-full flex-col justify-center ${shadow}`}>
             <p className="text-center text-4xl">{time.getHours() === 0 ? 12 : time.getHours()} : {time.getMinutes()} : {time.getSeconds()}</p>
             <p className="text-center text-lg">{days[time.getDay()]}, {time.getDate()}, {time.getFullYear()}</p>
         </article>
